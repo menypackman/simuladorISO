@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academia CISO: Normas ISO de Ciberseguridad</title>
+    <!-- Tailwind CSS para diseño fluido y premium -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons para iconos limpios y profesionales -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Transiciones suaves para interactividad */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Quitar efectos de impresión para pantallas y viceversa */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #certificate-print-area, #certificate-print-area * {
+                visibility: visible;
+            }
+            #certificate-print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+    <!-- CABECERA PRINCIPAL -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <!-- Logotipo / Título -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('dashboard')">
+                <div class="bg-gradient-to-tr from-indigo-500 to-purple-600 p-2 rounded-xl shadow-lg shadow-indigo-500/10">
+                    <i data-lucide="shield" class="h-7 w-7 text-white"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight bg-gradient-to-r from-white via-slate-100 to-indigo-300 bg-clip-text text-transparent">
+                        Academia CISO: Normas ISO
+                    </h1>
+                    <p class="text-xs text-slate-400">Aprende ISO 27001, 27002, 27005 y 27032 dinámicamente</p>
+                </div>
+            </div>
+            
+            <!-- Navegación de Pestañas -->
+            <nav class="flex items-center gap-1 bg-slate-950 p-1.5 rounded-xl border border-slate-800 flex-wrap justify-center">
+                <button onclick="navigateTo('dashboard')" id="nav-dashboard" class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-indigo-600 text-white shadow-md">
+                    <i data-lucide="layers" class="h-4 w-4"></i>
+                    <span>Inicio</span>
+                </button>
+                <button onclick="navigateTo('aprende')" id="nav-aprende" class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-900">
+                    <i data-lucide="book-open" class="h-4 w-4"></i>
+                    <span>Aprender</span>
+                </button>
+                <button onclick="navigateTo('simulador')" id="nav-simulador" class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-900">
+                    <i data-lucide="gamepad-2" class="h-4 w-4"></i>
+                    <span>Simulador</span>
+                </button>
+                <button onclick="navigateTo('evaluacion')" id="nav-evaluacion" class="px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-900">
+                    <i data-lucide="award" class="h-4 w-4"></i>
+                    <span>Evaluación</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO DE LA APP -->
+    <main class="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+
+        <!-- ==================== PESTAÑA: INICIO / DASHBOARD ==================== -->
+        <section id="section-dashboard" class="space-y-8 fade-in">
+            <!-- Banner de Bienvenida -->
+            <div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 border border-slate-800 p-8 md:p-12 shadow-2xl">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_45%)]"></div>
+                <div class="relative z-10 max-w-2xl space-y-4">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20">
+                        <i data-lucide="activity" class="h-3.5 w-3.5"></i> Portal de Aprendizaje Activo
+                    </span>
+                    <h2 class="text-3xl md:text-5xl font-black text-white leading-tight">
+                        Gobierna, Controla, Evalúa y Protege en el Ciberespacio.
+                    </h2>
+                    <p class="text-slate-300 text-base md:text-lg">
+                        La seguridad de la información explicada a través de un viaje interactivo. Conoce los pilares clave de la ciberseguridad corporativa y pon a prueba tus habilidades en nuestro simulador de toma de decisiones.
+                    </p>
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <button onclick="navigateTo('aprende')" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-600/20 flex items-center gap-2">
+                            <span>Explorar Normas</span>
+                            <i data-lucide="chevron-right" class="h-5 w-5"></i>
+                        </button>
+                        <button onclick="navigateTo('simulador')" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-xl border border-slate-700 transition-all flex items-center gap-2">
+                            <i data-lucide="play" class="h-4 w-4 text-emerald-400"></i>
+                            <span>Iniciar Simulador</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cuadrícula de las 4 Normas -->
+            <div class="space-y-4">
+                <div>
+                    <h3 class="text-2xl font-extrabold text-white">Las 4 Claves de la Seguridad de la Información</h3>
+                    <p class="text-slate-400 text-sm">Haz clic en cualquier tarjeta para profundizar en su teoría y estructura.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Tarjeta ISO 27001 -->
+                    <div onclick="selectIso('iso27001')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-indigo-500/50 hover:bg-slate-900/90 transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-xl">
+                        <div class="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-gradient-to-r from-blue-500 to-indigo-600"></div>
+                        <div class="space-y-3">
+                            <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-md border bg-blue-500/20 text-blue-300 border-blue-500/30">ISO 27001</span>
+                            <h4 class="text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">SGSI & Gobierno</h4>
+                            <p class="text-xs text-slate-400">El cerebro de gestión. Define políticas, liderazgo y mejora continua.</p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs text-indigo-400 group-hover:text-indigo-300 font-semibold">
+                            <span>Explorar teoría & analogía</span>
+                            <i data-lucide="chevron-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                    <!-- Tarjeta ISO 27002 -->
+                    <div onclick="selectIso('iso27002')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 hover:bg-slate-900/90 transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-xl">
+                        <div class="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-gradient-to-r from-emerald-500 to-teal-600"></div>
+                        <div class="space-y-3">
+                            <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-md border bg-emerald-500/20 text-emerald-300 border-emerald-500/30">ISO 27002</span>
+                            <h4 class="text-lg font-bold text-white group-hover:text-emerald-300 transition-colors">Catálogo de Controles</h4>
+                            <p class="text-xs text-slate-400">Las directrices técnicas detalladas de controles físicos, lógicos y organizacionales.</p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs text-indigo-400 group-hover:text-indigo-300 font-semibold">
+                            <span>Explorar teoría & analogía</span>
+                            <i data-lucide="chevron-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                    <!-- Tarjeta ISO 27005 -->
+                    <div onclick="selectIso('iso27005')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-amber-500/50 hover:bg-slate-900/90 transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-xl">
+                        <div class="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-gradient-to-r from-amber-500 to-orange-600"></div>
+                        <div class="space-y-3">
+                            <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-md border bg-amber-500/20 text-amber-300 border-amber-500/30">ISO 27005</span>
+                            <h4 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors">Gestión de Riesgos</h4>
+                            <p class="text-xs text-slate-400">Identificación, análisis y tratamiento estructurado de ciberriesgos.</p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs text-indigo-400 group-hover:text-indigo-300 font-semibold">
+                            <span>Explorar teoría & analogía</span>
+                            <i data-lucide="chevron-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                    <!-- Tarjeta ISO 27032 -->
+                    <div onclick="selectIso('iso27032')" class="group relative bg-slate-900 border border-slate-800 rounded-2xl p-6 hover:border-purple-500/50 hover:bg-slate-900/90 transition-all duration-300 cursor-pointer flex flex-col justify-between shadow-xl">
+                        <div class="absolute inset-x-0 top-0 h-1.5 rounded-t-2xl bg-gradient-to-r from-purple-500 to-pink-600"></div>
+                        <div class="space-y-3">
+                            <span class="inline-block text-xs font-bold px-2.5 py-1 rounded-md border bg-purple-500/20 text-purple-300 border-purple-500/30">ISO 27032</span>
+                            <h4 class="text-lg font-bold text-white group-hover:text-purple-300 transition-colors">Ciberseguridad Total</h4>
+                            <p class="text-xs text-slate-400">El escudo externo. Coordinación en el ciberespacio global y redes públicas.</p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-slate-800 flex items-center justify-between text-xs text-indigo-400 group-hover:text-indigo-300 font-semibold">
+                            <span>Explorar teoría & analogía</span>
+                            <i data-lucide="chevron-right" class="h-4 w-4 transform group-hover:translate-x-1 transition-transform"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Conceptual: La Cohesión -->
+            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 md:p-8 shadow-xl">
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <div class="lg:w-2/3 space-y-4">
+                        <div class="bg-slate-950 inline-flex items-center gap-2 px-3 py-1 rounded-xl text-xs text-slate-400 border border-slate-800">
+                            <i data-lucide="info" class="h-4 w-4 text-indigo-400"></i>
+                            <span>Marco Conceptual Integrado</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">¿Cómo encajan estas 4 normas en el mundo real?</h3>
+                        <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+                            Aprender normas técnicas puede parecer abrumador. La clave pedagógica es comprender que se complementan mutuamente para formar una defensa integral:
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs md:text-sm">
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1">
+                                <span class="font-bold text-blue-400">1. ISO 27001 (Estratégico)</span>
+                                <p class="text-slate-400">Es la ley y el marco organizativo. Determina las políticas generales y la dirección.</p>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1">
+                                <span class="font-bold text-emerald-400">2. ISO 27002 (Práctico/Táctico)</span>
+                                <p class="text-slate-400">Es la enciclopedia de buenas prácticas. Explica paso a paso cómo implementar los controles.</p>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1">
+                                <span class="font-bold text-amber-400">3. ISO 27005 (Operativo de Riesgo)</span>
+                                <p class="text-slate-400">La brújula. Evalúa amenazas para priorizar en qué controles merece la pena gastar presupuesto.</p>
+                            </div>
+                            <div class="bg-slate-950 p-4 rounded-xl border border-slate-850 space-y-1">
+                                <span class="font-bold text-purple-400">4. ISO 27032 (Ciberespacio)</span>
+                                <p class="text-slate-400">El perímetro exterior. Protege las conexiones en redes públicas, colaboraciones de internet y phishing.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Castillo Metáfora Visual -->
+                    <div class="lg:w-1/3 bg-slate-950 rounded-2xl border border-slate-800 p-6 w-full flex flex-col justify-center space-y-4">
+                        <h4 class="font-bold text-white text-center text-sm">El "Castillo de la Ciberseguridad"</h4>
+                        
+                        <div class="space-y-2">
+                            <div class="bg-purple-950/40 text-purple-300 border border-purple-800/60 rounded-xl p-2.5 text-center text-xs font-semibold shadow-inner">
+                                🌳 ISO 27032: Rutas Exteriores (Ciberespacio)
+                            </div>
+                            <div class="bg-blue-950/40 text-blue-300 border border-blue-800/60 rounded-xl p-2.5 text-center text-xs font-semibold shadow-inner">
+                                👑 ISO 27001: Planos y Leyes del Rey (SGSI)
+                            </div>
+                            <div class="bg-amber-950/40 text-amber-300 border border-amber-800/60 rounded-xl p-2.5 text-center text-xs font-semibold shadow-inner">
+                                🏹 ISO 27005: El Vigía en la Torre (Riesgos)
+                            </div>
+                            <div class="bg-emerald-950/40 text-emerald-300 border border-emerald-800/60 rounded-xl p-2.5 text-center text-xs font-semibold shadow-inner">
+                                🛡️ ISO 27002: Candados y Murallas (Controles)
+                            </div>
+                        </div>
+
+                        <p class="text-[11px] text-slate-500 text-center italic">
+                            Un sistema maduro requiere que todas las capas funcionen de forma armónica.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ==================== PESTAÑA: APRENDER (TEORÍA DETALLADA) ==================== -->
+        <section id="section-aprende" class="space-y-8 hidden fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                        <i data-lucide="book-open" class="h-6 w-6 text-indigo-500"></i>
+                        Módulo de Aprendizaje Interactivo
+                    </h3>
+                    <p class="text-slate-400 text-sm">Explora las características, analogías y conceptos de cada norma internacional.</p>
+                </div>
+
+                <!-- Selector de pestañas internas -->
+                <div class="flex flex-wrap gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800 w-full md:w-auto">
+                    <button onclick="selectIso('iso27001')" id="btn-iso27001" class="flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow">
+                        ISO 27001
+                    </button>
+                    <button onclick="selectIso('iso27002')" id="btn-iso27002" class="flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all text-slate-400 hover:text-white">
+                        ISO 27002
+                    </button>
+                    <button onclick="selectIso('iso27005')" id="btn-iso27005" class="flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all text-slate-400 hover:text-white">
+                        ISO 27005
+                    </button>
+                    <button onclick="selectIso('iso27032')" id="btn-iso27032" class="flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all text-slate-400 hover:text-white">
+                        ISO 27032
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenido dinámico del visor de teoría -->
+            <div id="theory-viewer" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Se inyectará por JS -->
+            </div>
+        </section>
+
+
+        <!-- ==================== PESTAÑA: SIMULADOR DE CISO ==================== -->
+        <section id="section-simulador" class="space-y-8 hidden fade-in">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <h3 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                        <i data-lucide="gamepad-2" class="h-6 w-6 text-emerald-500 animate-bounce"></i>
+                        Simulador de Decisiones: CISO de Emergencia
+                    </h3>
+                    <p class="text-slate-400 text-sm">Resuelve incidentes reales aplicando normativas ISO para salvar a la corporación.</p>
+                </div>
+                <div id="sim-reset-container" class="hidden">
+                    <button onclick="resetSimulator()" class="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-slate-300 font-semibold rounded-xl text-xs border border-slate-800 flex items-center gap-1.5 transition-all">
+                        <i data-lucide="refresh-cw" class="h-3.5 w-3.5"></i>
+                        <span>Reiniciar Simulación</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Área Dinámica del Simulador -->
+            <div id="simulator-workspace" class="max-w-6xl mx-auto">
+                <!-- Se renderiza vía JavaScript (Pantalla Inicial, Escenarios o Resultados) -->
+            </div>
+        </section>
+
+
+        <!-- ==================== PESTAÑA: EVALUACIÓN / TRIVIA ==================== -->
+        <section id="section-evaluacion" class="space-y-8 hidden fade-in">
+            <div>
+                <h3 class="text-2xl font-extrabold text-white flex items-center gap-2">
+                    <i data-lucide="award" class="h-6 w-6 text-purple-500 animate-pulse"></i>
+                    Examen de Certificación CISO Junior
+                </h3>
+                <p class="text-slate-400 text-sm">Responde las preguntas de opción múltiple para demostrar tus conocimientos teóricos.</p>
+            </div>
+
+            <!-- Área de Trabajo de la Evaluación -->
+            <div id="trivia-workspace" class="max-w-3xl mx-auto">
+                <!-- Renderizado por JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PIE DE PÁGINA -->
+    <footer class="bg-slate-900 border-t border-slate-800 py-6 text-center text-xs text-slate-500 mt-12">
+        <div class="max-w-7xl mx-auto px-4 space-y-2">
+            <p>Plataforma Didáctica Local de Estándares Internacionales ISO/IEC de Seguridad de la Información.</p>
+            <p class="text-[10px] text-slate-600">Diseñado para uso académico offline • Academia CISO • Sin dependencias externas de ejecución.</p>
+        </div>
+    </footer>
+
+
+    <!-- ==================== MODAL / VENTANA DE CERTIFICADO ==================== -->
+    <div id="certificate-modal" class="fixed inset-0 bg-slate-950/90 hidden items-center justify-center p-4 z-50 animate-fadeIn backdrop-blur-sm overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-10 max-w-3xl w-full space-y-8 relative shadow-2xl my-8">
+            
+            <!-- Certificado enmarcado -->
+            <div id="certificate-print-area" class="border-4 border-double border-indigo-500/30 p-8 rounded-2xl bg-slate-950 text-center relative overflow-hidden space-y-8">
+                <!-- Fondo transparente de seguridad -->
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] select-none pointer-events-none">
+                    <svg class="h-80 w-80 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                </div>
+
+                <div class="space-y-3 relative z-10">
+                    <div class="flex justify-center">
+                        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-2.5 rounded-full">
+                            <i data-lucide="award" class="h-8 w-8 text-white"></i>
+                        </div>
+                    </div>
+                    <h2 class="text-xs uppercase tracking-[0.3em] font-extrabold text-indigo-400">
+                        Certificado de Especialización Junior
+                    </h2>
+                    <div class="h-[2px] w-24 bg-gradient-to-r from-transparent via-indigo-500 to-transparent mx-auto"></div>
+                </div>
+
+                <div class="space-y-6 relative z-10">
+                    <p class="text-xs text-slate-400 italic">
+                        Por haber demostrado una comprensión sobresaliente en gobernanza, controles y gestión del riesgo informático
+                    </p>
+                    
+                    <div class="space-y-2">
+                        <span id="cert-student-name" class="text-2xl md:text-3xl font-black text-white tracking-wide block">
+                            Nombre del Estudiante
+                        </span>
+                        <div class="h-[1px] w-48 bg-slate-800 mx-auto"></div>
+                    </div>
+
+                    <p class="text-xs text-slate-300 max-w-lg mx-auto leading-relaxed">
+                        Ha acreditado de manera práctica y teórica su aptitud para diseñar un SGSI, estructurar controles, analizar amenazas bajo criterios de riesgo y orquestar respuestas coordinadas en el ciberespacio según:
+                    </p>
+
+                    <!-- Distinciones de normas -->
+                    <div class="flex flex-wrap gap-2 justify-center text-[10px] font-bold">
+                        <span class="bg-blue-950/50 text-blue-300 border border-blue-900/50 px-3 py-1.5 rounded-md">ISO 27001 (SGSI)</span>
+                        <span class="bg-emerald-950/50 text-emerald-300 border border-emerald-900/50 px-3 py-1.5 rounded-md">ISO 27002 (Controles)</span>
+                        <span class="bg-amber-950/50 text-amber-300 border border-amber-900/50 px-3 py-1.5 rounded-md">ISO 27005 (Riesgos)</span>
+                        <span class="bg-purple-950/50 text-purple-300 border border-purple-900/50 px-3 py-1.5 rounded-md">ISO 27032 (Ciberespacio)</span>
+                    </div>
+                </div>
+
+                <!-- Firmas e ID -->
+                <div class="pt-6 border-t border-slate-900 flex flex-col sm:flex-row justify-between items-center gap-6 text-left relative z-10">
+                    <div class="text-center sm:text-left space-y-1">
+                        <span class="text-[10px] font-bold text-slate-500 block uppercase">Código de Registro</span>
+                        <span class="text-xs font-mono text-indigo-300 font-bold">ISO-CISO-LOCAL-2026</span>
+                    </div>
+                    
+                    <div class="text-center space-y-1">
+                        <div class="italic text-xs font-serif text-slate-300">Comité de Validación CISO</div>
+                        <div class="h-[1px] w-28 bg-slate-850 mx-auto"></div>
+                        <span class="text-[9px] font-bold text-slate-500 block uppercase">Academia de Seguridad Digital</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botonera del Modal -->
+            <div class="flex flex-wrap justify-end gap-3 pt-2">
+                <button onclick="window.print()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold rounded-xl text-xs flex items-center gap-1.5 transition-all">
+                    <i data-lucide="download" class="h-4 w-4"></i>
+                    <span>Imprimir / Guardar como PDF</span>
+                </button>
+                <button onclick="toggleCertificateModal(false)" class="px-5 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-all">
+                    Cerrar Ventana
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ==================== LÓGICA DE PROGRAMACIÓN (JAVASCRIPT) ==================== -->
+    <script>
+        // --- 1. DATOS DE LA APLICACIÓN ---
+        const ISO_STANDARDS = {
+            iso27001: {
+                id: "ISO 27001",
+                title: "ISO/IEC 27001: El Cerebro Estratégico",
+                subtitle: "Sistema de Gestión de Seguridad de la Información (SGSI)",
+                color: "from-blue-600 to-indigo-700",
+                badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/30",
+                analogy: {
+                    title: "La Analogía del Castillo: Los Planos del Arquitecto",
+                    description: "ISO 27001 no es un escudo ni un centinela; representa los planos del castillo de defensa, las leyes dictadas por el Rey, el presupuesto de armas y las directrices que ordenan quién vigila cada acceso. Es la gobernanza estratégica."
+                },
+                keyConcepts: [
+                    { term: "SGSI", desc: "El Sistema de Gestión de Seguridad de la Información es el marco de procesos unificados." },
+                    { term: "Ciclo PHVA", desc: "Planificar (diseño), Hacer (ejecutar), Verificar (auditar) y Actuar (ajustar y optimizar de forma continua)." },
+                    { term: "Cláusulas obligatorias", desc: "Requisitos de cumplimiento corporativo indispensables para certificar una empresa (Capítulos 4 al 10)." },
+                    { term: "Anexo A", desc: "El catálogo de referencia simplificado que nos redirige al catálogo técnico detallado en ISO 27002." }
+                ],
+                practicalAction: "¡Es la única norma certificable para la organización! Define el 'Qué se debe lograr' de forma global."
+            },
+            iso27002: {
+                id: "ISO 27002",
+                title: "ISO/IEC 27002: El Cofre de Herramientas",
+                subtitle: "Código de Práctica para Controles de Seguridad de la Información",
+                color: "from-emerald-600 to-teal-700",
+                badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/30",
+                analogy: {
+                    title: "La Analogía del Castillo: Las Puertas, Candados y Guardias",
+                    description: "Si la norma ISO 27001 dicta 'debemos resguardar las riquezas', la ISO 27002 nos entrega el catálogo exacto con los tipos de candados, el grosor recomendado de las compuertas y las pautas para entrenar a los caballeros."
+                },
+                keyConcepts: [
+                    { term: "4 Grandes Temas (2022)", desc: "En la actualización de 2022, los antiguos 14 dominios se estructuraron en 4 categorías legibles:" },
+                    { term: "1. Organizacionales", desc: "Políticas corporativas, retorno seguro de activos, relaciones seguras con socios (37 controles)." },
+                    { term: "2. Controles de Personas", desc: "Seguridad antes, durante y después del empleo; políticas de concienciación activa (8 controles)." },
+                    { term: "3. Controles Físicos", desc: "Áreas seguras, oficinas de acceso restringido, protección perimetral e instalaciones (14 controles)." },
+                    { term: "4. Controles Tecnológicos", desc: "Sistemas de encriptación, redes, backups robustos y gestión de fallas del software (34 controles)." }
+                ],
+                practicalAction: "No se puede certificar una empresa bajo la ISO 27002 de manera independiente. Es el instructivo práctico de la 27001."
+            },
+            iso27005: {
+                id: "ISO 27005",
+                title: "ISO/IEC 27005: El Vigía Predictivo",
+                subtitle: "Gestión de Riesgos de Seguridad de la Información",
+                color: "from-amber-600 to-orange-700",
+                badgeColor: "bg-amber-500/20 text-amber-300 border-amber-500/30",
+                analogy: {
+                    title: "La Analogía del Castillo: El Catalejo y la Tabla de Probabilidades",
+                    description: "El vigía en lo alto de la torre analiza los peligros en el horizonte. ¿Se acerca una tormenta? ¿Un ejército enemigo? La ISO 27005 nos enseña a valorar la probabilidad y el impacto económico para planear cómo actuar de forma eficiente."
+                },
+                keyConcepts: [
+                    { term: "Análisis de Activos", desc: "Identificar los elementos de gran valor (bases de datos, patentes) para no gastar recursos a ciegas." },
+                    { term: "Fórmula de Riesgo", desc: "El riesgo se evalúa correlacionando la probabilidad de que una amenaza ocurra con el impacto (Riesgo = Impacto x Probabilidad)." },
+                    { term: "Tratamiento de Riesgo", desc: "Las cuatro decisiones clave que dicta la norma para actuar frente a un riesgo:" },
+                    { term: "Mitigar / Evitar / Transferir / Aceptar", desc: "Reducir la vulnerabilidad con controles, esquivar la actividad, contratar un seguro o asumir el riesgo remanente." }
+                ],
+                practicalAction: "Sin evaluar riesgos bajo la ISO 27005, la organización corre el peligro de proteger activos sin valor y obviar fugas críticas."
+            },
+            iso27032: {
+                id: "ISO 27032",
+                title: "ISO/IEC 27032: El Escudo Global",
+                subtitle: "Directrices para la Ciberseguridad (Seguridad en el Ciberespacio)",
+                color: "from-purple-600 to-pink-700",
+                badgeColor: "bg-purple-500/20 text-purple-300 border-purple-500/30",
+                analogy: {
+                    title: "La Analogía del Castillo: Rutas Comerciales y Alianzas Externas",
+                    description: "Nuestros emisarios comerciales viajan más allá del reino, donde asaltantes externos pueden suplantarlos (phishing) o hackear las carretas. La ISO 27032 vela por la seguridad compartida en el exterior (Internet, redes y la nube)."
+                },
+                keyConcepts: [
+                    { term: "El Ciberespacio", desc: "El ámbito no controlado que supera el límite corporativo tradicional e involucra a terceras redes." },
+                    { term: "Líneas de Ataque", desc: "Enfocado en tres grandes focos: Ingeniería social (engaño), software dañino (malware) e intrusiones técnicas." },
+                    { term: "Colaboración Activa", desc: "Fomenta la comunicación y el aviso de incidentes a entidades de ciberseguridad estatales (CERTs/CSIRTs)." },
+                    { term: "Resiliencia ante Crisis", desc: "Capacidad no solo de defenderse, sino de responder de forma unificada ante ataques de alto nivel a escala global." }
+                ],
+                practicalAction: "ISO 27032 expande el control de seguridad interno y de red hacia las redes mundiales interconectadas de internet."
+            }
+        };
+
+        const SIMULATOR_SCENARIOS = [
+            {
+                id: 1,
+                norm: "ISO 27001",
+                scenario: "El equipo directivo detecta con pánico que los colaboradores resguardan informes financieros confidenciales en herramientas de nube pública no institucionales. No se cuenta con una directriz, normativa o regla formal al respecto en el SGSI.",
+                question: "¿Qué decisión estratégica de gobernanza bajo la ISO 27001 implementas?",
+                options: [
+                    {
+                        text: "Formular formalmente una 'Política de Uso Aceptable de Activos de Información', validar su aprobación con el Comité Directivo (Liderazgo Cláusula 5) y capacitar de forma obligatoria a todos los empleados.",
+                        feedback: "¡Excelente decisión estratégica! ISO 27001 requiere que toda acción de resguardo comience con una declaración clara avalada formalmente por el liderazgo de la alta dirección corporativa.",
+                        riskImpact: -20,
+                        budgetImpact: -5000,
+                        complianceImpact: 25,
+                        correct: true
+                    },
+                    {
+                        text: "Bloquear inmediatamente el acceso general de red a las nubes personales a través del firewall sin avisar a los empleados.",
+                        feedback: "Medida técnica ineficaz a largo plazo. Al no existir una directiva formal ni concienciación, el personal buscará formas creativas de evadir los bloqueos (Shadow IT). Generas descontento y fallas de gestión.",
+                        riskImpact: -5,
+                        budgetImpact: -1500,
+                        complianceImpact: 5,
+                        correct: false
+                    },
+                    {
+                        text: "Comprar una licencia de software extremadamente cara para monitorear, sancionar y rescindir contratos de personal que utilice herramientas externas.",
+                        feedback: "Medida sumamente costosa que deteriora la cultura corporativa. Violas los lineamientos de gestión humana de la ISO 27002 y no cubres la carencia de gobernanza inicial solicitada en ISO 27001.",
+                        riskImpact: -10,
+                        budgetImpact: -18000,
+                        complianceImpact: 10,
+                        correct: false
+                    }
+                ]
+            },
+            {
+                id: 2,
+                norm: "ISO 27002",
+                scenario: "Una inspección reporta que los técnicos de soporte administran todos los servidores de bases de datos de clientes compartiendo una única contraseña maestra ('SuperAdmin2026'). No existe forma de trazar qué persona ingresa o altera datos.",
+                question: "¿Qué control técnico o de personas de la ISO 27002 aplicas para resolverlo?",
+                options: [
+                    {
+                        text: "Solicitar verbalmente a los operadores que sean discretos e instalar un afiche impreso en la oficina recordando la confidencialidad de la clave.",
+                        feedback: "Control ineficaz. No existe garantía de cumplimiento ni mecanismos técnicos de autenticación. La seguridad operacional no depende de recordatorios de buena voluntad.",
+                        riskImpact: 5,
+                        budgetImpact: 0,
+                        complianceImpact: 5,
+                        correct: false
+                    },
+                    {
+                        text: "Crear identidades de acceso individuales, habilitar autenticación multifactor (MFA) obligatoria para el personal de administración y configurar el almacenamiento de registros de auditoría (logs) cifrados.",
+                        feedback: "¡Impecable! Aplicas controles lógicos y tecnológicos del marco ISO 27002 (Control de Accesos e Identificación Unívoca), terminando con el anonimato.",
+                        riskImpact: -25,
+                        budgetImpact: -4000,
+                        complianceImpact: 25,
+                        correct: true
+                    },
+                    {
+                        text: "Sustituir a todo el personal de TI actual por proveedores externos de soporte para evitar malos hábitos.",
+                        feedback: "Impacto organizativo extremo y costoso. Disparas el presupuesto innecesariamente sin corregir el problema de fondo del acceso genérico de los administradores.",
+                        riskImpact: 10,
+                        budgetImpact: -25000,
+                        complianceImpact: 0,
+                        correct: false
+                    }
+                ]
+            },
+            {
+                // Escenario 3
+                id: 3,
+                norm: "ISO 27005",
+                scenario: "Un análisis detecta un fallo de 'Inyección SQL' en el software de consultas de clientes. El ajuste del código cuesta $8,000 USD y suspender el servicio frenaría el cobro de facturas mensuales. Una intrusión exitosa permitiría la copia íntegra de la base de datos.",
+                question: "Basándote en los criterios de gestión de riesgos de la ISO 27005, ¿cuál es el plan de tratamiento óptimo?",
+                options: [
+                    {
+                        text: "Aceptar plenamente el riesgo. Debido a que nunca se ha registrado un ataque en ese puerto de comunicación, el portal debe operar para asegurar los ingresos financieros de la organización.",
+                        feedback: "Error crítico. Un impacto devastador con probabilidad real alta no debe aceptarse bajo el estándar. Se considera negligencia en la protección de los datos confidenciales.",
+                        riskImpact: 35,
+                        budgetImpact: 0,
+                        complianceImpact: -15,
+                        correct: false
+                    },
+                    {
+                        text: "Comprar una póliza de seguro genérica contra robos de bases de datos por $2,000 USD para desligar la responsabilidad técnica.",
+                        feedback: "La transferencia financiera no remedia la vulnerabilidad en el portal, ni detendrá el impacto reputacional severo con los clientes afectados por el robo real de información.",
+                        riskImpact: 15,
+                        budgetImpact: -2000,
+                        complianceImpact: 5,
+                        correct: false
+                    },
+                    {
+                        text: "Mitigar el riesgo: destinar el capital para reprogramar el portal de forma segura y colocar una protección WAF (Web Application Firewall) temporal para contener ataques.",
+                        feedback: "¡Excelente! Disminuyes tanto el impacto como la probabilidad de un hackeo, actuando bajo un enfoque de mitigación prudente acorde a la ISO 27005.",
+                        riskImpact: -30,
+                        budgetImpact: -8000,
+                        complianceImpact: 25,
+                        correct: true
+                    }
+                ]
+            },
+            {
+                id: 4,
+                norm: "ISO 27032",
+                scenario: "Un grupo malintencionado genera un dominio clonado ('soporte-seguro-corp.com') enviando correos de phishing a tus clientes para extraer contraseñas. Varios usuarios ya perdieron el control de sus cuentas y culpan a tu empresa.",
+                question: "La agresión ocurre en el ciberespacio externo público. ¿Cómo respondes bajo la perspectiva de la ISO 27032?",
+                options: [
+                    {
+                        text: "Descartar la gestión. Dado que los correos y servidores apócrifos no radican en nuestra red física, la responsabilidad técnica es del descuido de los clientes corporativos.",
+                        feedback: "Incorrecto. La norma ISO 27032 promueve velar por la integridad global en internet. Desentenderse destruye la reputación del negocio y la confianza del usuario.",
+                        riskImpact: 25,
+                        budgetImpact: 0,
+                        complianceImpact: -10,
+                        correct: false
+                    },
+                    {
+                        text: "Lanzar alertas de ciberseguridad a clientes, exigir la suspensión del dominio clonado (take-down) ante el registrador de internet de forma legal y notificar a los centros gubernamentales CERT/CSIRT.",
+                        feedback: "¡Excelente desempeño! ISO 27032 se fundamenta en la cooperación con terceros del ecosistema, mitigando ataques de phishing e ingeniería social masiva en internet.",
+                        riskImpact: -20,
+                        budgetImpact: -3000,
+                        complianceImpact: 25,
+                        correct: true
+                    },
+                    {
+                        text: "Adquirir un servicio en la Deep Web para lanzar ataques de denegación de servicio (DDoS) contra los servidores de los atacantes.",
+                        feedback: "Inadecuado e ilegal. Atacar sistemas externos compromete jurídicamente a la empresa y viola los estándares de rectitud y gobernanza de las normas ISO.",
+                        riskImpact: 40,
+                        budgetImpact: -5000,
+                        complianceImpact: -30,
+                        correct: false
+                    }
+                ]
+            }
+        ];
+
+        const TRIVIA_QUESTIONS = [
+            {
+                question: "¿Cuál es el núcleo y la principal diferencia entre la norma ISO 27001 y la ISO 27002?",
+                options: [
+                    { text: "La ISO 27001 es el estándar internacional certificable que regula el diseño del SGSI, mientras que la ISO 27002 es la guía de implementación práctica de sus controles.", correct: true },
+                    { text: "La ISO 27001 cubre únicamente infraestructura física y la ISO 27002 se reserva para el código de programación.", correct: false },
+                    { text: "La ISO 27001 es exclusiva de organismos militares y la ISO 27002 aplica solo para empresas de servicios privados.", correct: false }
+                ],
+                explanation: "ISO 27001 define las pautas de gestión (el 'Qué') necesarias para certificarse, e ISO 27002 sirve como catálogo extendido que enseña la forma de implementar esos controles (el 'Cómo')."
+            },
+            {
+                question: "En la reorganización de la norma ISO 27002:2022, ¿en qué temas o pilares agrupamos el catálogo de controles de seguridad?",
+                options: [
+                    { text: "En 14 áreas de tecnología tradicionales heredadas de los años noventa.", correct: false },
+                    { text: "En 4 categorías esenciales: Organizacionales, Personas, Físicos y Tecnológicos.", correct: true },
+                    { text: "En 3 niveles escalonados: Controles Críticos, Controles Intermedios y Controles de Reserva.", correct: false }
+                ],
+                explanation: "La versión 2022 modernizó el esquema clasificando los controles en 4 grandes pilares funcionales para agilizar su gobernanza y comprensión por auditoría."
+            },
+            {
+                question: "Según la norma de gestión de riesgos ISO 27005, si una empresa adquiere un seguro financiero contra ataques cibernéticos, ¿qué tratamiento de riesgo realiza?",
+                options: [
+                    { text: "Mitigación del riesgo tecnológico.", correct: false },
+                    { text: "Evitar de forma definitiva la amenaza en la red.", correct: false },
+                    { text: "Compartir o Transferir el riesgo financiero.", correct: true }
+                ],
+                explanation: "Al contratar un seguro, compartes o transfieres el impacto financiero perjudicial del incidente a una aseguradora calificada."
+            },
+            {
+                question: "¿Cuál es el campo específico que diferencia el enfoque de la ISO 27032 frente al resto de normas de la familia?",
+                options: [
+                    { text: "Se concentra en el Ciberespacio, coordinando la protección técnica frente a amenazas de internet, phishing e ingeniería social entre entidades públicas y privadas.", correct: true },
+                    { text: "Regula las especificaciones de trituración física de papeles e informes de oficina confidenciales.", correct: false },
+                    { text: "Establece el rango de salarios que deben recibir los peritos forenses informáticos de una nación.", correct: false }
+                ],
+                explanation: "ISO 27032 sale de la red local tradicional de una empresa para enfocarse en la resiliencia en internet público, la red abierta y la resistencia coordinada de ciberseguridad."
+            },
+            {
+                question: "Dentro del marco estratégico de la ISO 27001, ¿qué objetivo cumple el Ciclo PHVA?",
+                options: [
+                    { text: "Prevenir, Hackear, Vulnerar, Analizar los flujos de código.", correct: false },
+                    { text: "Garantizar la mejora continua del SGSI a través de las fases de Planificar, Hacer, Verificar y Actuar.", correct: true },
+                    { text: "Protección de hardware viejo mediante almacenamiento y backup redundante.", correct: false }
+                ],
+                explanation: "El Ciclo PHVA (Planear-Hacer-Verificar-Actuar) asegura que la seguridad no sea un proyecto de una sola vez, sino un ciclo de evolución y auditoría constante."
+            }
+        ];
+
+
+        // --- 2. GESTIÓN DE ESTADO LOCAL ---
+        let currentTab = 'dashboard';
+        let studentName = '';
+        let activeIso = 'iso27001';
+
+        // Estado del Simulador
+        let simStep = 0; // 0: Inicio, 1-4: Escenarios, 5: Resultados
+        let simBudget = 50000;
+        let simRisk = 70;
+        let simCompliance = 10;
+        let simHistory = [];
+        let selectedOptionIndex = null;
+        let hasSelectedOption = false;
+
+        // Estado de la Trivia
+        let triviaStep = 0; // 0: Inicio, 1-5: Preguntas, 6: Final
+        let triviaAnswers = [];
+        let selectedTriviaOption = null;
+        let triviaSubmitted = false;
+        let triviaScore = 0;
+
+
+        // --- 3. ENRUTAMIENTO / NAVEGACIÓN ---
+        function navigateTo(tabId) {
+            currentTab = tabId;
+            
+            // Actualizar visibilidad de secciones
+            document.getElementById('section-dashboard').classList.add('hidden');
+            document.getElementById('section-aprende').classList.add('hidden');
+            document.getElementById('section-simulador').classList.add('hidden');
+            document.getElementById('section-evaluacion').classList.add('hidden');
+
+            document.getElementById(`section-${tabId}`).classList.remove('hidden');
+
+            // Actualizar estilos de los botones de navegación
+            const navIds = ['dashboard', 'aprende', 'simulador', 'evaluacion'];
+            navIds.forEach(id => {
+                const btn = document.getElementById(`nav-${id}`);
+                if (id === tabId) {
+                    btn.className = "px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 bg-indigo-600 text-white shadow-md";
+                } else {
+                    btn.className = "px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all flex items-center gap-2 text-slate-400 hover:text-white hover:bg-slate-900";
+                }
+            });
+
+            // Inicializar vistas al entrar
+            if (tabId === 'aprende') {
+                renderTheory();
+            } else if (tabId === 'simulador') {
+                renderSimulator();
+            } else if (tabId === 'evaluacion') {
+                renderTrivia();
+            }
+        }
+
+
+        // --- 4. CONTROL DE VISOR DE TEORÍA ---
+        function selectIso(isoKey) {
+            activeIso = isoKey;
+            
+            // Si no estamos en la pestaña Aprende, redirigir
+            if (currentTab !== 'aprende') {
+                navigateTo('aprende');
+            }
+
+            // Actualizar botones internos de teoría
+            const keys = ['iso27001', 'iso27002', 'iso27005', 'iso27032'];
+            keys.forEach(key => {
+                const btn = document.getElementById(`btn-${key}`);
+                if (key === isoKey) {
+                    btn.className = "flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all bg-indigo-600 text-white shadow";
+                } else {
+                    btn.className = "flex-1 md:flex-none px-4 py-2 text-xs sm:text-sm font-semibold rounded-lg transition-all text-slate-400 hover:text-white hover:bg-transparent";
+                }
+            });
+
+            renderTheory();
+        }
+
+        function renderTheory() {
+            const data = ISO_STANDARDS[activeIso];
+            const viewer = document.getElementById('theory-viewer');
+
+            viewer.innerHTML = `
+                <!-- Columna de Información Central -->
+                <div class="lg:col-span-2 space-y-6 animate-fadeIn">
+                    
+                    <!-- Tarjeta / Encabezado de la Norma -->
+                    <div class="p-6 md:p-8 rounded-3xl bg-gradient-to-br ${data.color} text-white shadow-2xl relative overflow-hidden">
+                        <div class="absolute top-0 right-0 transform translate-x-12 -translate-y-12 w-64 h-64 bg-white/5 rounded-full blur-2xl"></div>
+                        <div class="relative z-10 space-y-3">
+                            <span class="bg-white/20 backdrop-blur-md text-white font-bold text-[10px] px-3 py-1 rounded-full border border-white/10 uppercase tracking-widest">
+                                ${data.id}
+                            </span>
+                            <h4 class="text-2xl md:text-3xl font-black">${data.title}</h4>
+                            <p class="text-slate-100/90 text-xs sm:text-sm font-medium italic">${data.subtitle}</p>
+                        </div>
+                    </div>
+
+                    <!-- Cuadro de Analogía Didáctica -->
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 md:p-8 space-y-4">
+                        <div class="flex items-center gap-3 text-indigo-400">
+                            <i data-lucide="layers" class="h-6 w-6"></i>
+                            <h5 class="font-extrabold text-white text-lg">${data.analogy.title}</h5>
+                        </div>
+                        <p class="text-slate-300 text-sm md:text-base leading-relaxed bg-slate-950 p-5 rounded-2xl border border-slate-850">
+                            "${data.analogy.description}"
+                        </p>
+                    </div>
+
+                    <!-- Fichas de Conceptos Clave -->
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 md:p-8 space-y-4">
+                        <h5 class="font-extrabold text-white text-lg flex items-center gap-2">
+                            <i data-lucide="check-circle-2" class="h-5 w-5 text-emerald-400"></i>
+                            Conceptos Fundamentales de Examen
+                        </h5>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            ${data.keyConcepts.map(concept => `
+                                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-850 flex flex-col justify-between">
+                                    <span class="font-bold text-indigo-400 text-sm">${concept.term}</span>
+                                    <p class="text-slate-300 text-xs mt-1 leading-relaxed">${concept.desc}</p>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Lateral de Resumen y Autoevaluación -->
+                <div class="space-y-6 animate-fadeIn">
+                    
+                    <!-- Tarjeta de Uso Profesional -->
+                    <div class="bg-indigo-950/30 border border-indigo-800/40 rounded-3xl p-6 space-y-4">
+                        <div class="flex items-center gap-2 text-indigo-400">
+                            <i data-lucide="info" class="h-5 w-5"></i>
+                            <h6 class="font-bold text-white text-sm">Aplicación en el Sector Real</h6>
+                        </div>
+                        <p class="text-xs text-slate-300 leading-relaxed">
+                            ${data.practicalAction}
+                        </p>
+                        
+                        <div class="border-t border-indigo-800/20 pt-4 space-y-2">
+                            <span class="text-[10px] uppercase font-bold text-slate-400 block">Especificaciones Técnicas</span>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-400">Certificación:</span>
+                                <span class="font-semibold text-white">${data.id === 'ISO 27001' ? 'SÍ (Certificación Oficial)' : 'NO (Es directriz de apoyo)'}</span>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-slate-400">Jerarquía del Framework:</span>
+                                <span class="font-semibold text-white">
+                                    ${data.id === 'ISO 27001' ? 'Gobernanza / Marco de Trabajo' : ''}
+                                    ${data.id === 'ISO 27002' ? 'Catálogo de Controles Técnicos' : ''}
+                                    ${data.id === 'ISO 27005' ? 'Gestión y Análisis de Riesgos' : ''}
+                                    ${data.id === 'ISO 27032' ? 'Ciberdefensa del Ciberespacio' : ''}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caja de Preguntas de Ensayo Rápido -->
+                    <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 space-y-4">
+                        <h6 class="font-bold text-white text-sm">Reto Teórico Corto</h6>
+                        <div class="space-y-3">
+                            <p class="text-xs text-slate-300 font-medium">
+                                ${data.id === 'ISO 27001' ? '¿Qué ocurre si implementas controles técnicos sin una política estratégica corporativa aprobada?' : ''}
+                                ${data.id === 'ISO 27002' ? '¿Por qué las auditorías evalúan el cumplimiento de la norma 27001 y no directamente de la 27002?' : ''}
+                                ${data.id === 'ISO 27005' ? '¿Es financieramente viable mitigar todos los riesgos tecnológicos posibles de una corporación?' : ''}
+                                ${data.id === 'ISO 27032' ? '¿Sustituye la norma de Ciberespacio ISO 27032 a la seguridad interna ISO 27001?' : ''}
+                            </p>
+                            
+                            <div class="bg-slate-950 p-3.5 rounded-xl border border-slate-850 text-[11px] text-slate-400 italic">
+                                ${data.id === 'ISO 27001' ? 'Respuesta: Fallaría la gobernanza. Habría controles improvisados y sin orden, impidiendo la mejora continua y la certificación formal.' : ''}
+                                ${data.id === 'ISO 27002' ? 'Respuesta: Porque la ISO 27002 no es un estándar certificable independiente; actúa como catálogo de apoyo para los controles de la ISO 27001.' : ''}
+                                ${data.id === 'ISO 27005' ? 'Respuesta: No. Mitigar absolutamente todo agotaría el presupuesto. Se deben evaluar los activos y aceptar riesgos cuyo coste de mitigación exceda su valor.' : ''}
+                                ${data.id === 'ISO 27032' ? 'Respuesta: En absoluto. Ambas interactúan. La ISO 27032 extiende el alcance operacional de seguridad fuera de las murallas físicas hacia la red abierta.' : ''}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acción rápida al simulador -->
+                    <div class="bg-gradient-to-r from-emerald-950/20 to-teal-950/20 border border-emerald-800/30 rounded-3xl p-5 text-center space-y-3">
+                        <p class="text-xs text-emerald-300 font-semibold">¿Quieres medir tus conocimientos?</p>
+                        <p class="text-[10px] text-slate-400">Entra al juego interactivo para gestionar incidentes de ciberseguridad corporativos.</p>
+                        <button onclick="navigateTo('simulador')" class="w-full py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs transition-all shadow-md flex items-center justify-center gap-1">
+                            <i data-lucide="play" class="h-3.5 w-3.5"></i>
+                            <span>Iniciar Simulador de CISO</span>
+                        </button>
+                    </div>
+
+                </div>
+            `;
+            
+            lucide.createIcons();
+        }
+
+
+        // --- 5. LOGICA DEL SIMULADOR DE CISO ---
+        function resetSimulator() {
+            simStep = 0;
+            simBudget = 50000;
+            simRisk = 70;
+            simCompliance = 10;
+            simHistory = [];
+            selectedOptionIndex = null;
+            hasSelectedOption = false;
+            
+            document.getElementById('sim-reset-container').classList.add('hidden');
+            renderSimulator();
+        }
+
+        function renderSimulator() {
+            const workspace = document.getElementById('simulator-workspace');
+            
+            if (simStep > 0 && simStep <= SIMULATOR_SCENARIOS.length) {
+                document.getElementById('sim-reset-container').classList.remove('hidden');
+            }
+
+            // PANTALLA INICIAL: INGRESO DE NOMBRE
+            if (simStep === 0) {
+                workspace.innerHTML = `
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-8 text-center max-w-2xl mx-auto space-y-6 shadow-2xl animate-fadeIn">
+                        <div class="bg-emerald-500/10 text-emerald-400 p-4 rounded-full w-20 h-20 mx-auto flex items-center justify-center border border-emerald-500/20">
+                            <i data-lucide="shield" class="h-10 w-10"></i>
+                        </div>
+                        
+                        <div class="space-y-3">
+                            <h4 class="text-2xl font-black text-white">Ingreso al Servidor: SecureCorp</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Has sido asignado de urgencia como el nuevo <strong>Director de Seguridad (CISO)</strong>. La compañía arrastra fallas severas: el <span class="text-red-400 font-bold">Riesgo Corporativo está al 70%</span> y nuestro <span class="text-amber-400 font-bold">Cumplimiento ISO es de apenas el 10%</span>.
+                            </p>
+                            <p class="text-slate-400 text-xs leading-relaxed">
+                                Tienes un fondo operacional de <span class="text-emerald-400 font-bold">$50,000 USD</span>. Deberás balancear 4 crisis críticas. Tu meta es reducir el riesgo por debajo de 45% y alcanzar un cumplimiento mayor al 60% sin quedar en bancarrota.
+                            </p>
+                        </div>
+
+                        <div class="max-w-md mx-auto space-y-3 pt-4">
+                            <input 
+                                type="text" 
+                                id="student-name-input" 
+                                value="${studentName}"
+                                oninput="updateStudentName(this.value)"
+                                placeholder="Escribe tu Nombre para el Diploma"
+                                class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-center text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                            />
+                            <button 
+                                id="start-simulation-btn"
+                                onclick="startSimulation()"
+                                class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 disabled:hover:bg-emerald-600 text-white font-extrabold rounded-2xl transition-all shadow-lg text-sm flex items-center justify-center gap-2"
+                                ${studentName.trim().length < 3 ? 'disabled' : ''}
+                            >
+                                <span>Asumir Cargo de CISO</span>
+                                <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                            </button>
+                            <p id="name-validation-warning" class="text-[10px] text-slate-500 italic ${studentName.trim().length >= 3 ? 'hidden' : ''}">
+                                Registra tu nombre (mínimo 3 caracteres) para poder avanzar y calificar para el diploma.
+                            </p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // PANTALLA ACTIVA: ESCENARIOS Y CRISIS
+            else if (simStep > 0 && simStep <= SIMULATOR_SCENARIOS.length) {
+                const scenario = SIMULATOR_SCENARIOS[simStep - 1];
+
+                workspace.innerHTML = `
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+                        
+                        <!-- Panel Lateral: Estado de los Indicadores -->
+                        <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 space-y-6 shadow-xl animate-fadeIn">
+                            <h5 class="font-extrabold text-white text-sm pb-3 border-b border-slate-800">
+                                Consola Operacional de Riesgo
+                            </h5>
+                            
+                            <!-- Presupuesto -->
+                            <div class="space-y-1">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-400 flex items-center gap-1">
+                                        <i data-lucide="dollar-sign" class="h-4 w-4 text-emerald-400"></i> Presupuesto Remanente
+                                    </span>
+                                    <span class="font-bold text-white">$${simBudget.toLocaleString()} USD</span>
+                                </div>
+                                <div class="h-2 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="h-full bg-emerald-500 transition-all duration-500" style="width: ${Math.min(100, (simBudget / 50000) * 100)}%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Riesgo -->
+                            <div class="space-y-1">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-400 flex items-center gap-1">
+                                        <i data-lucide="alert-triangle" class="h-4 w-4 text-red-400"></i> Nivel de Ciberriesgo
+                                    </span>
+                                    <span class="font-bold ${simRisk > 50 ? 'text-red-400' : 'text-emerald-400'}">
+                                        ${simRisk}% ${simRisk > 50 ? '(Crítico)' : '(Controlado)'}
+                                    </span>
+                                </div>
+                                <div class="h-2 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="h-full transition-all duration-500 ${simRisk > 50 ? 'bg-red-500' : 'bg-emerald-500'}" style="width: ${simRisk}%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Cumplimiento -->
+                            <div class="space-y-1">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-slate-400 flex items-center gap-1">
+                                        <i data-lucide="check-circle-2" class="h-4 w-4 text-blue-400"></i> Alineación Normas ISO
+                                    </span>
+                                    <span class="font-bold text-blue-400">${simCompliance}%</span>
+                                </div>
+                                <div class="h-2 bg-slate-950 rounded-full overflow-hidden">
+                                    <div class="h-full bg-blue-500 transition-all duration-500" style="width: ${simCompliance}%"></div>
+                                </div>
+                            </div>
+
+                            <div class="text-[10px] text-slate-500 pt-3 border-t border-slate-800 text-center uppercase tracking-wider">
+                                CISO: <span class="font-bold text-slate-300">${studentName}</span> • Incidente ${simStep} de ${SIMULATOR_SCENARIOS.length}
+                            </div>
+                        </div>
+
+                        <!-- Columna Principal: El Incidente -->
+                        <div class="lg:col-span-2 space-y-6 animate-fadeIn">
+                            <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 md:p-8 space-y-6 shadow-xl relative overflow-hidden">
+                                <div class="absolute top-0 left-0 w-2 h-full bg-indigo-500"></div>
+                                
+                                <div class="flex items-center justify-between gap-2">
+                                    <span class="bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                        Área de Estudio: ${scenario.norm}
+                                    </span>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <h4 class="text-lg md:text-xl font-bold text-white leading-relaxed">
+                                        ${scenario.question}
+                                    </h4>
+                                    <div class="text-slate-300 text-xs sm:text-sm leading-relaxed bg-slate-950 p-5 rounded-2xl border border-slate-850 italic">
+                                        "${scenario.scenario}"
+                                    </div>
+                                </div>
+
+                                <!-- Listado de opciones de decisión -->
+                                <div class="space-y-3 pt-2">
+                                    ${scenario.options.map((option, idx) => {
+                                        let btnClass = "bg-slate-950 hover:bg-slate-900 border-slate-800 text-slate-300";
+                                        let indicatorClass = "border-slate-700 text-slate-400";
+                                        
+                                        if (hasSelectedOption) {
+                                            if (selectedOptionIndex === idx) {
+                                                btnClass = option.correct 
+                                                    ? "bg-emerald-950/30 border-emerald-500 text-emerald-200" 
+                                                    : "bg-red-950/30 border-red-500 text-red-200";
+                                                indicatorClass = option.correct 
+                                                    ? "bg-emerald-600 text-white border-emerald-500" 
+                                                    : "bg-red-600 text-white border-red-500";
+                                            } else {
+                                                btnClass = "bg-slate-950/50 border-slate-900 text-slate-500 opacity-60";
+                                            }
+                                        } else if (selectedOptionIndex === idx) {
+                                            btnClass = "bg-indigo-950/30 border-indigo-500 text-indigo-200 ring-1 ring-indigo-500";
+                                            indicatorClass = "bg-indigo-600 text-white border-indigo-500";
+                                        }
+
+                                        return `
+                                            <button 
+                                                onclick="selectSimulatorOption(${idx})" 
+                                                ${hasSelectedOption ? 'disabled' : ''}
+                                                class="w-full text-left p-4 rounded-2xl border transition-all text-xs sm:text-sm flex items-start gap-3 ${btnClass}"
+                                            >
+                                                <span class="h-5 w-5 rounded-full flex items-center justify-center border text-[10px] font-bold shrink-0 mt-0.5 ${indicatorClass}">
+                                                    ${String.fromCharCode(65 + idx)}
+                                                </span>
+                                                <span class="leading-relaxed">${option.text}</span>
+                                            </button>
+                                        `;
+                                    }).join('')}
+                                </div>
+
+                                <!-- Barra Inferior de Envío -->
+                                <div class="pt-4 border-t border-slate-850 flex flex-col md:flex-row items-center justify-between gap-4">
+                                    <div class="text-xs text-slate-400">
+                                        ${!hasSelectedOption && selectedOptionIndex === null ? '<span class="flex items-center gap-1"><i data-lucide="info" class="h-4 w-4 text-amber-500"></i> Selecciona la opción idónea según las normas ISO.</span>' : ''}
+                                        ${!hasSelectedOption && selectedOptionIndex !== null ? '<span class="flex items-center gap-1 text-indigo-400"><i data-lucide="check" class="h-4 w-4"></i> Listo para confirmar. Presiona el botón derecho.</span>' : ''}
+                                    </div>
+                                    <div class="w-full md:w-auto">
+                                        ${!hasSelectedOption ? `
+                                            <button 
+                                                onclick="confirmSimulatorDecision()" 
+                                                ${selectedOptionIndex === null ? 'disabled' : ''}
+                                                class="w-full md:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-500 disabled:opacity-55 text-white font-extrabold rounded-xl transition-all text-xs"
+                                            >
+                                                Confirmar Decisión
+                                            </button>
+                                        ` : `
+                                            <button 
+                                                onclick="nextSimulatorStep()" 
+                                                class="w-full md:w-auto px-6 py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold rounded-xl transition-all text-xs flex items-center justify-center gap-1.5"
+                                            >
+                                                <span>${simStep === SIMULATOR_SCENARIOS.length ? 'Analizar Resultados' : 'Siguiente Incidente'}</span>
+                                                <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                                            </button>
+                                        `}
+                                    </div>
+                                </div>
+
+                                <!-- Retroalimentación Dinámica -->
+                                ${hasSelectedOption ? `
+                                    <div class="p-4 rounded-2xl border mt-4 text-xs space-y-2 animate-fadeIn ${scenario.options[selectedOptionIndex].correct ? 'bg-emerald-950/40 border-emerald-800/60 text-emerald-300' : 'bg-red-950/40 border-red-800/60 text-red-300'}">
+                                        <div class="flex items-center gap-2 font-bold">
+                                            <i data-lucide="${scenario.options[selectedOptionIndex].correct ? 'check-circle-2' : 'alert-triangle'}" class="h-4 w-4"></i>
+                                            <span>Explicación del Auditor:</span>
+                                        </div>
+                                        <p class="leading-relaxed">${scenario.options[selectedOptionIndex].feedback}</p>
+                                        <div class="pt-2 border-t border-slate-800/50 grid grid-cols-3 gap-2 text-center text-[10px] text-slate-300 font-mono">
+                                            <div>PRESUPUESTO: ${scenario.options[selectedOptionIndex].budgetImpact >= 0 ? '+' : ''}${scenario.options[selectedOptionIndex].budgetImpact} USD</div>
+                                            <div>RIESGO: ${scenario.options[selectedOptionIndex].riskImpact >= 0 ? '+' : ''}${scenario.options[selectedOptionIndex].riskImpact}%</div>
+                                            <div>CUMPLIMIENTO: ${scenario.options[selectedOptionIndex].complianceImpact >= 0 ? '+' : ''}${scenario.options[selectedOptionIndex].complianceImpact}%</div>
+                                        </div>
+                                    </div>
+                                ` : ''}
+
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+            }
+
+            // PANTALLA DE RESULTADOS DEL SIMULADOR
+            else {
+                const passedSimulation = simCompliance >= 60 && simRisk <= 45;
+
+                workspace.innerHTML = `
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-8 max-w-4xl mx-auto space-y-8 shadow-2xl animate-fadeIn">
+                        <div class="text-center space-y-3">
+                            <span class="inline-block text-xs font-bold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1 rounded-full uppercase">
+                                Auditoría Final de SecureCorp
+                            </span>
+                            <h4 class="text-3xl font-black text-white">¡Reporte de Gestión del CISO!</h4>
+                            <p class="text-slate-400 text-sm max-w-xl mx-auto">
+                                Este es el balance final de la corporación bajo la administración del CISO <span class="font-bold text-slate-200">${studentName}</span>.
+                            </p>
+                        </div>
+
+                        <!-- Indicadores de Cierre -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-slate-950 p-6 rounded-2xl border border-slate-850 space-y-2 text-center">
+                                <i data-lucide="dollar-sign" class="h-8 w-8 text-emerald-400 mx-auto"></i>
+                                <span class="text-xs text-slate-500 uppercase block font-bold">Fondo Restante</span>
+                                <span class="text-2xl font-black text-white">$${simBudget.toLocaleString()} USD</span>
+                            </div>
+
+                            <div class="bg-slate-950 p-6 rounded-2xl border space-y-2 text-center ${simRisk <= 45 ? 'border-emerald-500/30' : 'border-red-500/30'}">
+                                <i data-lucide="alert-triangle" class="h-8 w-8 mx-auto ${simRisk <= 45 ? 'text-emerald-400' : 'text-red-400'}"></i>
+                                <span class="text-xs text-slate-500 uppercase block font-bold">Riesgo Residual</span>
+                                <span class="text-2xl font-black ${simRisk <= 45 ? 'text-emerald-400' : 'text-red-400'}">${simRisk}%</span>
+                                <p class="text-[10px] text-slate-400">${simRisk <= 45 ? '¡Nivel de peligro óptimo!' : 'Riesgo inaceptable para la empresa.'}</p>
+                            </div>
+
+                            <div class="bg-slate-950 p-6 rounded-2xl border space-y-2 text-center ${simCompliance >= 60 ? 'border-blue-500/30' : 'border-amber-500/30'}">
+                                <i data-lucide="check-circle-2" class="h-8 w-8 mx-auto ${simCompliance >= 60 ? 'text-blue-400' : 'text-amber-400'}"></i>
+                                <span class="text-xs text-slate-500 uppercase block font-bold">Cumplimiento ISO</span>
+                                <span class="text-2xl font-black ${simCompliance >= 60 ? 'text-blue-400' : 'text-amber-400'}">${simCompliance}%</span>
+                                <p class="text-[10px] text-slate-400">${simCompliance >= 60 ? '¡Listo para certificación!' : 'Insuficiente para certificar la norma.'}</p>
+                            </div>
+                        </div>
+
+                        <!-- Historial Detallado -->
+                        <div class="bg-slate-950 rounded-2xl border border-slate-850 p-6 space-y-4">
+                            <h5 class="font-bold text-white text-sm">Registro de Incidentes Evaluados</h5>
+                            <div class="space-y-4">
+                                ${simHistory.map((item, index) => `
+                                    <div class="flex gap-3 text-xs border-b border-slate-850 pb-3 last:border-0 last:pb-0 items-start">
+                                        <div class="mt-1">
+                                            <span class="h-5 w-5 rounded-full flex items-center justify-center ${item.correct ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}">
+                                                <i data-lucide="${item.correct ? 'check' : 'x'}" class="h-3 w-3"></i>
+                                            </span>
+                                        </div>
+                                        <div class="space-y-1">
+                                            <span class="font-bold text-slate-200">Incidente ${index + 1} (${item.norm}):</span>
+                                            <p class="text-slate-400 text-xs">${item.choiceText}</p>
+                                            <p class="text-indigo-400 text-[11px] italic">Aprendizaje: ${item.feedback}</p>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+
+                        <!-- Evaluación de Aptitud -->
+                        <div class="text-center space-y-4 pt-4 border-t border-slate-850">
+                            <p class="text-xs text-slate-300">
+                                ${passedSimulation 
+                                    ? "¡Felicidades! Has completado el simulador técnico con un excelente balance corporativo. Completa el examen teórico para certificar tus conocimientos." 
+                                    : "No lograste estabilizar los indicadores dentro de los límites exigidos (Riesgo ≤ 45% y Cumplimiento ≥ 60%). Te sugerimos repasar la teoría y reintentar la simulación."}
+                            </p>
+                            
+                            <div class="flex flex-wrap gap-4 justify-center">
+                                <button onclick="resetSimulator()" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-xl text-xs transition-all border border-slate-750">
+                                    Reintentar Simulación
+                                </button>
+                                ${passedSimulation ? `
+                                    <button onclick="navigateTo('evaluacion')" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-all flex items-center gap-1">
+                                        <span>Ir a Examen Teórico</span>
+                                        <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                                    </button>
+                                ` : `
+                                    <button onclick="navigateTo('aprende')" class="px-6 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-all">
+                                        <span>Repasar Fichas Teóricas</span>
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            lucide.createIcons();
+        }
+
+        function updateStudentName(val) {
+            studentName = val;
+            const startBtn = document.getElementById('start-simulation-btn');
+            const warning = document.getElementById('name-validation-warning');
+            
+            if (startBtn) {
+                if (studentName.trim().length >= 3) {
+                    startBtn.removeAttribute('disabled');
+                    if (warning) warning.classList.add('hidden');
+                } else {
+                    startBtn.setAttribute('disabled', 'true');
+                    if (warning) warning.classList.remove('hidden');
+                }
+            }
+        }
+
+        function startSimulation() {
+            if (studentName.trim().length < 3) return;
+            simStep = 1;
+            renderSimulator();
+        }
+
+        function selectSimulatorOption(idx) {
+            if (hasSelectedOption) return;
+            selectedOptionIndex = idx;
+            renderSimulator();
+        }
+
+        function confirmSimulatorDecision() {
+            if (selectedOptionIndex === null || hasSelectedOption) return;
+            
+            const scenario = SIMULATOR_SCENARIOS[simStep - 1];
+            const option = scenario.options[selectedOptionIndex];
+
+            // Aplicar impactos con límites
+            simBudget = Math.max(0, simBudget + option.budgetImpact);
+            simRisk = Math.max(5, Math.min(100, simRisk + option.riskImpact));
+            simCompliance = Math.max(0, Math.min(100, simCompliance + option.complianceImpact));
+
+            // Guardar historial
+            simHistory.push({
+                scenarioId: scenario.id,
+                norm: scenario.norm,
+                choiceText: option.text,
+                feedback: option.feedback,
+                correct: option.correct
+            });
+
+            hasSelectedOption = true;
+            renderSimulator();
+        }
+
+        function nextSimulatorStep() {
+            selectedOptionIndex = null;
+            hasSelectedOption = false;
+            simStep += 1;
+            renderSimulator();
+        }
+
+
+        // --- 6. LOGICA DE LA EVALUACIÓN / TRIVIA ---
+        function resetTrivia() {
+            triviaStep = 0;
+            triviaAnswers = [];
+            selectedTriviaOption = null;
+            triviaSubmitted = false;
+            triviaScore = 0;
+            renderTrivia();
+        }
+
+        function renderTrivia() {
+            const workspace = document.getElementById('trivia-workspace');
+
+            // INGRESO AL EXAMEN
+            if (triviaStep === 0) {
+                workspace.innerHTML = `
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-8 text-center max-w-xl mx-auto space-y-6 shadow-2xl animate-fadeIn">
+                        <div class="bg-purple-500/10 text-purple-400 p-4 rounded-full w-20 h-20 mx-auto flex items-center justify-center border border-purple-500/20">
+                            <i data-lucide="award" class="h-10 w-10 animate-pulse"></i>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="text-xl font-bold text-white">Evaluación de Conocimientos Teóricos</h4>
+                            <p class="text-slate-300 text-sm leading-relaxed">
+                                Este examen académico evalúa los pilares teóricos de las normas. Consta de <strong>5 preguntas oficiales</strong> de opción múltiple.
+                            </p>
+                            <p class="text-slate-400 text-xs">
+                                Se requiere un mínimo de <strong>3 respuestas correctas (3/5)</strong> y haber completado la simulación de CISO para desbloquear el diploma.
+                            </p>
+                        </div>
+
+                        <div class="max-w-md mx-auto space-y-4 pt-4">
+                            <input 
+                                type="text" 
+                                id="trivia-name-input" 
+                                value="${studentName}"
+                                oninput="updateStudentNameFromTrivia(this.value)"
+                                placeholder="Escribe tu Nombre para el Diploma"
+                                class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-center text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all text-sm"
+                            />
+                            <button 
+                                id="start-trivia-btn"
+                                onclick="startTrivia()"
+                                class="w-full py-3 bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white font-extrabold rounded-2xl transition-all shadow-lg text-sm flex items-center justify-center gap-2"
+                                ${studentName.trim().length < 3 ? 'disabled' : ''}
+                            >
+                                <span>Iniciar Examen de Suficiencia</span>
+                                <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // PREGUNTAS DEL EXAMEN
+            else if (triviaStep > 0 && triviaStep <= TRIVIA_QUESTIONS.length) {
+                const question = TRIVIA_QUESTIONS[triviaStep - 1];
+
+                workspace.innerHTML = `
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-6 md:p-8 space-y-6 shadow-xl relative overflow-hidden animate-fadeIn">
+                        <div class="absolute top-0 right-0 p-4 text-xs font-bold text-slate-500">
+                            Pregunta ${triviaStep} de ${TRIVIA_QUESTIONS.length}
+                        </div>
+
+                        <span class="inline-block text-[9px] font-extrabold uppercase text-purple-400 bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full">
+                            Examen Académico
+                        </span>
+
+                        <h4 class="text-base md:text-lg font-bold text-white leading-relaxed">
+                            ${question.question}
+                        </h4>
+
+                        <!-- Listado de Opciones -->
+                        <div class="space-y-3 pt-2">
+                            ${question.options.map((option, idx) => {
+                                let btnClass = "bg-slate-950 hover:bg-slate-900 border-slate-800 text-slate-300";
+                                let indicatorClass = "border-slate-700 text-slate-400";
+                                
+                                if (triviaSubmitted) {
+                                    if (selectedTriviaOption === idx) {
+                                        btnClass = option.correct 
+                                            ? "bg-emerald-950/30 border-emerald-500 text-emerald-200" 
+                                            : "bg-red-950/30 border-red-500 text-red-200";
+                                        indicatorClass = option.correct 
+                                            ? "bg-emerald-600 text-white border-emerald-500" 
+                                            : "bg-red-600 text-white border-red-500";
+                                    } else if (option.correct) {
+                                        btnClass = "bg-emerald-950/10 border-emerald-500/40 text-emerald-300";
+                                    } else {
+                                        btnClass = "bg-slate-950/50 border-slate-900 text-slate-500 opacity-60";
+                                    }
+                                } else if (selectedTriviaOption === idx) {
+                                    btnClass = "bg-purple-950/30 border-purple-500 text-purple-200 ring-1 ring-purple-500";
+                                    indicatorClass = "bg-purple-600 text-white border-purple-500";
+                                }
+
+                                return `
+                                    <button 
+                                        onclick="selectTriviaOption(${idx})" 
+                                        ${triviaSubmitted ? 'disabled' : ''}
+                                        class="w-full text-left p-4 rounded-2xl border transition-all text-xs sm:text-sm flex items-start gap-3 ${btnClass}"
+                                    >
+                                        <span class="h-5 w-5 rounded-full flex items-center justify-center border text-[10px] font-bold shrink-0 mt-0.5 ${indicatorClass}">
+                                            ${String.fromCharCode(65 + idx)}
+                                        </span>
+                                        <span class="leading-relaxed">${option.text}</span>
+                                    </button>
+                                `;
+                            }).join('')}
+                        </div>
+
+                        <!-- Barra de Progreso Interna -->
+                        <div class="h-1 bg-slate-950 rounded-full overflow-hidden w-full">
+                            <div class="h-full bg-purple-500 transition-all duration-300" style="width: ${(triviaStep / TRIVIA_QUESTIONS.length) * 100}%"></div>
+                        </div>
+
+                        <!-- Panel Inferior -->
+                        <div class="pt-4 border-t border-slate-850 flex items-center justify-between gap-4 flex-wrap">
+                            <div class="text-xs text-slate-400">
+                                ${!triviaSubmitted && selectedTriviaOption === null ? '<span>Elige la opción más coherente para avanzar.</span>' : ''}
+                                ${!triviaSubmitted && selectedTriviaOption !== null ? '<span class="text-purple-400 font-semibold">Listo para validar.</span>' : ''}
+                            </div>
+                            <div class="flex gap-2 w-full sm:w-auto justify-end">
+                                ${!triviaSubmitted ? `
+                                    <button 
+                                        onclick="confirmTriviaAnswer()" 
+                                        ${selectedTriviaOption === null ? 'disabled' : ''}
+                                        class="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 disabled:opacity-55 text-white font-extrabold rounded-xl transition-all text-xs"
+                                    >
+                                        Validar Respuesta
+                                    </button>
+                                ` : `
+                                    <button 
+                                        onclick="nextTriviaStep()" 
+                                        class="px-6 py-2.5 bg-purple-600 hover:bg-purple-500 text-white font-extrabold rounded-xl transition-all text-xs flex items-center justify-center gap-1"
+                                    >
+                                        <span>${triviaStep === TRIVIA_QUESTIONS.length ? 'Finalizar Examen' : 'Siguiente Pregunta'}</span>
+                                        <i data-lucide="chevron-right" class="h-4 w-4"></i>
+                                    </button>
+                                `}
+                            </div>
+                        </div>
+
+                        <!-- Retroalimentación / Explicación Teórica -->
+                        ${triviaSubmitted ? `
+                            <div class="p-4 rounded-2xl bg-slate-950 border border-slate-850 text-xs text-slate-300 space-y-1 animate-fadeIn">
+                                <span class="font-bold text-indigo-400 block">Explicación Teórica:</span>
+                                <p class="leading-relaxed">${question.explanation}</p>
+                            </div>
+                        ` : ''}
+
+                    </div>
+                `;
+            }
+
+            // PANTALLA DE RESULTADOS DE TRIVIA
+            else {
+                const passedTrivia = triviaScore >= 3;
+                const passedSimulation = simCompliance >= 60 && simRisk <= 45;
+
+                workspace.innerHTML = `
+                    <div class="bg-slate-900 rounded-3xl border border-slate-800 p-8 max-w-xl mx-auto text-center space-y-6 shadow-2xl animate-fadeIn">
+                        <div class="space-y-1">
+                            <span class="text-xs font-bold text-purple-400 bg-purple-500/10 border border-purple-500/20 px-3 py-1 rounded-full uppercase">
+                                Hoja de Calificación
+                            </span>
+                            <h4 class="text-2xl font-black text-white">Examen Terminado</h4>
+                            <p class="text-slate-400 text-xs">Acreditado a: <span class="font-bold text-slate-200">${studentName}</span></p>
+                        </div>
+
+                        <!-- Nota central -->
+                        <div class="p-6 bg-slate-950 rounded-2xl border border-slate-850 inline-block mx-auto min-w-44">
+                            <span class="text-5xl font-black block text-indigo-400">${triviaScore} / 5</span>
+                            <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mt-1">Aciertos</span>
+                        </div>
+
+                        <div class="space-y-3">
+                            ${passedTrivia ? `
+                                <div class="p-4 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-2xl text-xs flex items-center gap-2 justify-center">
+                                    <i data-lucide="check-circle-2" class="h-5 w-5 shrink-0"></i>
+                                    <span>¡Aprobado! Has acreditado la suficiencia teórica de la evaluación.</span>
+                                </div>
+                                
+                                ${passedSimulation ? `
+                                    <div class="space-y-4 pt-2">
+                                        <p class="text-xs text-slate-300 leading-relaxed">
+                                            ¡Doble logro! Has cumplido los dos requisitos exigidos: aprobar la simulación corporativa y pasar el examen teórico de conocimientos.
+                                        </p>
+                                        <button 
+                                            onclick="toggleCertificateModal(true)" 
+                                            class="px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 text-white font-extrabold rounded-2xl shadow-xl shadow-indigo-500/20 transition-all text-xs flex items-center justify-center gap-2 mx-auto animate-bounce"
+                                        >
+                                            <i data-lucide="award" class="h-4 w-4"></i>
+                                            <span>Generar Certificado Digital</span>
+                                        </button>
+                                    </div>
+                                ` : `
+                                    <div class="p-4 bg-amber-500/10 text-amber-400 border border-amber-500/20 rounded-2xl text-xs space-y-2">
+                                        <p class="font-bold">⚠️ Requisito del Simulador Pendiente</p>
+                                        <p class="text-[11px] leading-relaxed">
+                                            Aprobaste esta prueba teórica, pero aún no has cumplido los objetivos del simulador de CISO corporativo (Riesgo ≤ 45% y Cumplimiento ≥ 60%). Completa el simulador para calificar al diploma.
+                                        </p>
+                                        <button onclick="navigateTo('simulador')" class="px-4 py-2 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-xl text-[10px] transition-all">
+                                            Ir al Simulador Técnico
+                                        </button>
+                                    </div>
+                                `}
+                            ` : `
+                                <div class="p-4 bg-red-500/10 text-red-400 border border-red-500/20 rounded-2xl text-xs flex items-center gap-2 justify-center">
+                                    <i data-lucide="x" class="h-5 w-5 shrink-0"></i>
+                                    <span>No has alcanzado la nota mínima (requieres al menos 3 de 5 correctas).</span>
+                                </div>
+                                <p class="text-xs text-slate-400">
+                                    Te aconsejamos repasar las fichas e intentar la prueba nuevamente.
+                                </p>
+                                <button onclick="resetTrivia()" class="px-5 py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-100 font-bold rounded-xl text-xs border border-slate-750 transition-all">
+                                    Reintentar Examen Escrito
+                                </button>
+                            `}
+                        </div>
+                    </div>
+                `;
+            }
+
+            lucide.createIcons();
+        }
+
+        function updateStudentNameFromTrivia(val) {
+            studentName = val;
+            const startBtn = document.getElementById('start-trivia-btn');
+            if (startBtn) {
+                if (studentName.trim().length >= 3) {
+                    startBtn.removeAttribute('disabled');
+                } else {
+                    startBtn.setAttribute('disabled', 'true');
+                }
+            }
+        }
+
+        function startTrivia() {
+            if (studentName.trim().length < 3) return;
+            triviaStep = 1;
+            renderTrivia();
+        }
+
+        function selectTriviaOption(idx) {
+            if (triviaSubmitted) return;
+            selectedTriviaOption = idx;
+            renderTrivia();
+        }
+
+        function confirmTriviaAnswer() {
+            if (selectedTriviaOption === null || triviaSubmitted) return;
+            
+            const question = TRIVIA_QUESTIONS[triviaStep - 1];
+            const isCorrect = question.options[selectedTriviaOption].correct;
+
+            if (isCorrect) {
+                triviaScore += 1;
+            }
+
+            triviaAnswers.push({
+                question: question.question,
+                selected: question.options[selectedTriviaOption].text,
+                correct: isCorrect,
+                explanation: question.explanation
+            });
+
+            triviaSubmitted = true;
+            renderTrivia();
+        }
+
+        function nextTriviaStep() {
+            selectedTriviaOption = null;
+            triviaSubmitted = false;
+            triviaStep += 1;
+            renderTrivia();
+        }
+
+
+        // --- 7. CONTROL DEL CERTIFICADO ---
+        function toggleCertificateModal(show) {
+            const modal = document.getElementById('certificate-modal');
+            const nameField = document.getElementById('cert-student-name');
+            
+            if (show) {
+                nameField.innerText = studentName || "Estudiante de Ciberseguridad";
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+            } else {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+
+        // --- 8. INICIALIZACIÓN DE LA APP ---
+        window.onload = function() {
+            // Cargar por defecto la pestaña de inicio
+            navigateTo('dashboard');
+            lucide.createIcons();
+        };
+    </script>
+</body>
+</html>
